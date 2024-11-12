@@ -51,7 +51,7 @@ class Showcase extends StatefulWidget {
   /// Title alignment with in tooltip widget
   ///
   /// Defaults to [TextAlign.start]
-  final TextAlign titleAlignment;
+  final TextAlign titleTextAlign;
 
   /// Represents summary description of target widget
   final String? description;
@@ -177,7 +177,7 @@ class Showcase extends StatefulWidget {
   /// Description alignment with in tooltip widget
   ///
   /// Defaults to [TextAlign.start]
-  final TextAlign descriptionAlignment;
+  final TextAlign descriptionTextAlign;
 
   /// if `disableDefaultTargetGestures` parameter is true
   /// onTargetClick, onTargetDoubleTap, onTargetLongPress and
@@ -258,13 +258,23 @@ class Showcase extends StatefulWidget {
   /// Defaults to 14.
   final double toolTipMargin;
 
+  /// Defaults to [Alignment.center]
+  final AlignmentGeometry titleAlignment;
+
+  /// Description alignment within tooltip widget
+  ///
+  /// Defaults to [Alignment.center]
+  final AlignmentGeometry descriptionAlignment;
+
   const Showcase({
     required this.key,
     required this.description,
     required this.child,
     this.title,
-    this.titleAlignment = TextAlign.start,
-    this.descriptionAlignment = TextAlign.start,
+    this.titleAlignment = Alignment.center,
+    this.descriptionAlignment = Alignment.center,
+    this.titleTextAlign = TextAlign.start,
+    this.descriptionTextAlign = TextAlign.start,
     this.targetShapeBorder = const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(8)),
     ),
@@ -354,8 +364,10 @@ class Showcase extends StatefulWidget {
         disableScaleAnimation = null,
         title = null,
         description = null,
-        titleAlignment = TextAlign.start,
-        descriptionAlignment = TextAlign.start,
+        titleTextAlign = TextAlign.start,
+        descriptionTextAlign = TextAlign.start,
+        titleAlignment = Alignment.center,
+        descriptionAlignment = Alignment.center,
         titleTextStyle = null,
         descTextStyle = null,
         tooltipBackgroundColor = Colors.white,
@@ -612,6 +624,8 @@ class _ShowcaseState extends State<Showcase> {
             screenSize: screenSize,
             title: widget.title,
             titleAlignment: widget.titleAlignment,
+            descriptionTextAlign: widget.descriptionTextAlign,
+            titleTextAlign: widget.titleTextAlign,
             description: widget.description,
             descriptionAlignment: widget.descriptionAlignment,
             titleTextStyle: widget.titleTextStyle,
